@@ -9,7 +9,7 @@ const closeButton = document.querySelector("#close-message");
 const fadeElement = document.querySelector("#fade");
 
 cepInput.addEventListener("keypress", (e) => {
-  const onlyNumbers = /[0-9]/
+  const onlyNumbers = /[0-9]/;
   const key = String.fromCharCode(e.keyCode);
   if (!onlyNumbers.test(key)) {
     e.preventDefault();
