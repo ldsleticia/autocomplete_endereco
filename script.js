@@ -20,11 +20,11 @@ cepInput.addEventListener("keypress", (e) => {
 cepInput.addEventListener("keyup", (e) => {
   const inputValue = e.target.value;
   if (inputValue.length === 8) {
-    getAddress(inputValue);
+    getAdress(inputValue);
   }
 });
 
-const getAddress = async (cep) => {
+const getAdress = async (cep) => {
   toggleLoader();
   cepInput.blur();
   const url = `https://viacep.com.br/ws/${cep}/json`;
@@ -69,7 +69,6 @@ const toggleDisabled = () => {
 
 const toggleLoader = () => {
   const loaderElement = document.querySelector("#loader");
-
   fadeElement.classList.toggle("hide");
   loaderElement.classList.toggle("hide");
 };
@@ -85,6 +84,7 @@ const toggleMessage = (msg) => {
 closeButton.addEventListener("click", () => {
   toggleMessage();
 });
+
 addressForm.addEventListener("submit", (e) => {
   e.preventDefault();
   toggleLoader();
