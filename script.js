@@ -8,23 +8,23 @@ const formInputs = document.querySelectorAll("[data-input]");
 const closeButton = document.querySelector("#close-message");
 const fadeElement = document.querySelector("#fade");
 
-cepInput.addEventListener("keypress", (e) => {
+cepInput.addEventListener("keypress", (event) => {
   const onlyNumbers = /[0-9]/;
-  const key = String.fromCharCode(e.keyCode);
+  const key = String.fromCharCode(event.keyCode);
   if (!onlyNumbers.test(key)) {
-    e.preventDefault();
+    event.preventDefault();
     return;
   }
 });
 
-cepInput.addEventListener("keyup", (e) => {
-  const inputValue = e.target.value;
+cepInput.addEventListener("keyup", (event) => {
+  const inputValue = event.target.value;
   if (inputValue.length === 8) {
-    getAdress(inputValue);
+    getAddress(inputValue);
   }
 });
 
-const getAdress = async (cep) => {
+const getAddress = async (cep) => {
   toggleLoader();
   cepInput.blur();
   const url = `https://viacep.com.br/ws/${cep}/json`;
@@ -32,7 +32,7 @@ const getAdress = async (cep) => {
   const response = await fetch(url);
   const data = await response.json();
 
-  if (data.erro === "true") {
+  if (data.erro) {
     if (!addressInput.hasAttribute("disabled")) {
       toggleDisabled();
     }
@@ -85,8 +85,8 @@ closeButton.addEventListener("click", () => {
   toggleMessage();
 });
 
-addressForm.addEventListener("submit", (e) => {
-  e.preventDefault();
+addressForm.addEventListener("submit", (event) => {
+  event.preventDefault();
   toggleLoader();
   setTimeout(() => {
     toggleLoader();
